@@ -8,18 +8,16 @@ app.use(express.json());
 // install nodemailer
 const nodemailer = require("nodemailer");
 
-mongoose.connect(process.env.MONGO_URI).then(()=>console.log("Connected to DB")
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(()=>console.log("Connected to DB")
 )
 .catch(()=>console.log("Failed to connect DB")
 )
 // create model and schema 
 // created db name passkey inside we created collection called bulkmail so we need to target that
 const credential=mongoose.model("credential",{},"bulkmail")
-
-
-
-
-
 
 app.post("/sendmail", function (req, res) {
   var msg = req.body.msg;
