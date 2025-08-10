@@ -1,13 +1,14 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose")
+require("dotenv").config();
 const app = express();
 app.use(cors());
 app.use(express.json());
 // install nodemailer
 const nodemailer = require("nodemailer");
 
-mongoose.connect("mongodb+srv://rev:123@cluster0.o7w8rhz.mongodb.net/passkey?retryWrites=true&w=majority&appName=Cluster0").then(()=>console.log("Connected to DB")
+mongoose.connect(process.env.MONGO_URI).then(()=>console.log("Connected to DB")
 )
 .catch(()=>console.log("Failed to connect DB")
 )
